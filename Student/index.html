@@ -154,103 +154,67 @@
         </button>
       </div>
       <div class="modal-body">
-        <form  method="post">
+        <form  method="post" action="StudentSubmit.php">
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <label for="fname">First Name</label>
-                  <input type="text" class="form-control" id="fname" placeholder="First Name">
+                  <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
                 </div>
                     
                   <div class="form-group col-md-6">
                   <label for="lname">Last Name</label>
-                  <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
                   </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputEmail">Email</label>
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                  <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputPermemail">Perm Email</label>
-                  <input type="text" class="form-control" id="inputPermemail" placeholder="Permanent Email">
+                  <input type="text" class="form-control" name="inputPermemail" id="inputPermemail" placeholder="Permanent Email">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputGradterm">Grad Term</label>
-                  <input type="text" class="form-control" id="inputGradterm" placeholder="Grad Term">
+                  <input type="text" class="form-control" name="inputGradterm" id="inputGradterm" placeholder="Grad Term">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputadmitterm">Admit Term</label>
-                  <input type="text" class="form-control" id="inputadmitterm" placeholder="Admit Term">
+                  <input type="text" class="form-control" name="inputadmitterm" id="inputadmitterm" placeholder="Admit Term">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputtermGPA">Term GPA</label>
-                  <input type="text" class="form-control" id="inputtermGPA" placeholder="Term GPA">
+                  <input type="text" class="form-control" name="inputtermGPA" id="inputtermGPA" placeholder="Term GPA">
                 </div>
                 
                 <div class="form-group col-md-6">
                   <label for="inputcumGPA">Cumulative GPA</label>
-                  <input type="text" class="form-control" id="inputcumGPA" placeholder="Cumulative GPA">
+                  <input type="text" class="form-control" name="inputcumGPA" id="inputcumGPA" placeholder="Cumulative GPA">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputprogressunits">Units in Progress</label>
-                  <input type="text" class="form-control" id="inputprogressunits" placeholder="Units in Progress">
+                  <input type="text" class="form-control" name="inputprogressunits" id="inputprogressunits" placeholder="Units in Progress">
                 </div>
                 
                 <div class="form-group col-md-6">
                   <label for="inputcumunits">Cumulative Units</label>
-                  <input type="text" class="form-control" id="inputcumunits" placeholder="Cumulative Units">
+                  <input type="text" class="form-control" name="inputcumunits" id="inputcumunits" placeholder="Cumulative Units">
                 </div>
                     
                 <div class="form-group col-md-6">
                   <label for="inputAdditional">Additional Comments</label>
-                  <input type="text" class="form-control" id="inputAdditional" placeholder="Additional Comments">
+                  <input type="text" class="form-control" name="inputAdditional" id="inputAdditional" placeholder="Additional Comments">
                 </div>
 
                 <button id="submit" type="submit" onclick="Formsubmit()" class="btn btn-primary" >Save</button>
                 </div>
     </form>
           
-          <script>
-              
-          function Formsubmit(){ 
-                var FName = document.getElementById("fname").value;
-                var Lname = document.getElementById("lname").value;
-                var Email = document.getElementById("inputEmail").value;
-                var Permemail = document.getElementById("inputPermemail").value;
-                var Gradterm = document.getElementById("inputGradterm").value;
-                var Admitterm = document.getElementById("inputadmitterm").value;
-                var TermGPA = document.getElementById("inputtermGPA").value;
-                var cumGPA = document.getElementById("inputcumGPA").value;
-                var progressunits = document.getElementById("inputprogressunits").value;
-                var cumunits = document.getElementById("inputcumunits").value;
-                var Additional = document.getElementById("inputAdditional").value;
-    
-            // Returns successful data submission message when the entered information is stored in database.
-            var dataString = 'fname1=' + fname + '&lname1=' + lname + '&Email1=' + Email + '&Permemail=' + Permemail+ '&Gradterm1=' + Gradterm + '&Admitterm1=' + Admitterm + '&TermGPA1=' + TermGPA + '&cumGPA1=' + cumGPA + '&progressunits1=' + progressunits + '&cumunits1=' + cumunits + '&Additional=' + cumunits;
-              if (inputAdditional == '' ) {
-                    alert("Please Fill in some comments");
-                    } else {
-                    // AJAX code to submit form.
-                    $.ajax({
-                    type: "POST",
-                    url: "form.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(html) {
-                    alert(html);
-                    }
-                    });
-                    }
-                    return false;
-                    }
-          
-          
-          </script>
           
           
       </div>
