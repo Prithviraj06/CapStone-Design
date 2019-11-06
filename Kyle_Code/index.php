@@ -98,20 +98,26 @@
       <input type="submit" name="submit">
     </form> -->
 <?php
+if ( !isset( $_GET['startrow'] ) or !is_numeric( $_GET['startrow'] ) ){
+    $startrow = 0;
+}
+else{
+    $startrow = (int) $_GET['startrow'];
+}      
+
 if(isset($_POST['search'])){
-            
+    
     $search_value = $_POST['search_value'];
             
-    $search_query = "SELECT * FROM student WHERE student_id LIKE '%".$search_value."%' ORDER BY 1";
+    $search_query = "SELECT * FROM student WHERE student_id LIKE '%".$search_value."%' ORDER BY 1 LIMIT $startrow, 50";
     $search_result = searchTable($search_query);
             
     }
     else{
-        $query = "SELECT * FROM student ORDER BY 1";
+        $query = "SELECT * FROM student ORDER BY 1 LIMIT $startrow,50";
         $search_result = searchTable($query);
     }
-        
-        
+      
 function searchTable($query)
 {
 $localhost = "localhost";
@@ -142,7 +148,10 @@ return $search_result;
 			
                 
             <?php
-			
+			$numrows = mysqli_num_rows($search_result);
+            
+            if ($numrows > 0) {
+                
             echo "<table border='1px'>";
             echo "<thead>";
                echo "<th>Student ID</th>";
@@ -180,6 +189,17 @@ return $search_result;
                 
 				}
                 echo "</table>";
+            }
+            }
+                
+            $prev = $startrow - 50;
+            
+            if ($prev >= 50) {
+            echo '<a href="' . $_SERVER['PHP_SELF'] . '?startrow=' . $prev . '">Previous</a>';
+            }
+            
+            if ($numrows >= 50){
+            echo '<a href="' . $_SERVER['PHP_SELF'] . '?startrow=' . ($startrow + 50) . '">Next</a>';
             }
 			?>
 			
