@@ -24,8 +24,9 @@ $Comments2 = $_POST['inputAdditional'];
     $sql = "INSERT INTO studentrec(fname,lname, email, Peremail, GradTerm,AdmitTerm, TermGpa,CumGpa,InProgressUnits,CumUnits,Comments) VALUES('$fname2','$lname2','$email2','$Peremail2','$GradTerm2','$AdmitTerm2','$TermGpa2','$CumGpa2','$InProgressUnits2','$CumUnits2','$Comments2')"; //Insert Query
 
   
-    $result = mysqli_query($con,$sql);
+     $result = mysqli_query($con,$sql);
    
   header('Location: index.html');
 }
 ?>
+<?php dt?>

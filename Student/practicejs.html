@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>jQuery Demo</title>
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <style type="text/css">
+        #circle{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: green;
+            margin: 10px;
+            
+        }
+        .square{
+            width: 150px;
+            height: 150px;
+            background-color: red;
+            margin: 10px;
+        }
+        
+        
+    
+    
+    </style>
+</head>
+
+<body>
+    
+    <div id="circle"></div>
+    <p>This is some text</p>
+   
+
+    <script type = "text/javascript">
+        
+    $("#circle").click(function(){
+        $("p").html("This is the new text!!");
+    })
+    
+    
+    </script>
+</body>
+
+    
+    
+    
+    
+</html>

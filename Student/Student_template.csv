@@ -1,0 +1,6 @@
+student_id,first_name,last_name,email,perm_email,current_term,grad_term,admit_term,term_gpa,cum_gpa,in_progress_units,cum_units,status
+14111,Kyle,Wright,kwright@scu.edu,kwright@gmail.com,1451,4042,3842,3.8,3.5,6,46,active
+14112,Prithvi,Naidu,pnadu@scuwekf.efesf,asdasdadht@gmail.com,4111,4242,4141,4,4,12,48,active
+14113,Pooja,Powar,pp@addgfaeef.com,ewrwer@agrdg.com,5113,1232,4545,3,3.3,10,42,active
+14114,Yogi,Sahu,qaefasf@gmail.com,gagaggfafe@gmail.com,5131,2343,4545,3.4,3.8,11,48,active
+141512,Raj,Paul,rp@scu.edu,sdfadfuh@gmail.com,5351,1234,1234,3.4,3.8,11,48,Inactive
