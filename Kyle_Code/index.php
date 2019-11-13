@@ -11,6 +11,7 @@
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
 
 
@@ -32,10 +33,10 @@
             
             <table class="itemnav" border= "1px">
                 
-                <th><a href="#">Student</a></th>
-                <th><a href="#">Faculty</a></th>
-                <th><a href="project.html">Project</a></th>
-                <th><a href="#">Sponsor</a></th>
+                <th><a href="index.php">Student</a></th>
+                <th><a href="index_faculty.php">Faculty</a></th>
+                <th><a href="index_project.php">Project</a></th>
+                <th><a href="index_sponsor.php">Sponsor</a></th>
                 
                 
                 
@@ -93,11 +94,16 @@
      
     </ul>
      
-     <!-- <form  method="post" enctype="multipart/form-data">
+     <form  method="post" enctype="multipart/form-data">
       <input type="file" name="Upload">
       <input type="submit" name="submit">
-    </form> -->
+    </form>
+      
 <?php
+error_reporting(E_ERROR | E_PARSE);
+
+include ('ref_fun.php');
+
 if ( !isset( $_GET['startrow'] ) or !is_numeric( $_GET['startrow'] ) ){
     $startrow = 0;
 }
@@ -117,19 +123,9 @@ if(isset($_POST['search'])){
         $query = "SELECT * FROM student ORDER BY 1 LIMIT $startrow,50";
         $search_result = searchTable($query);
     }
+  
       
-function searchTable($query)
-{
-$localhost = "localhost";
-$dbun = "root";
-$dbpw = "Thinkblue76";
-$dbname = "capstone_reg_test";
-
-$connect = mysqli_connect($localhost,$dbun,$dbpw,$dbname);
-    
-$search_result = mysqli_query($connect, $query);
-return $search_result;
-}
+      
 ?>
         
           
@@ -148,6 +144,7 @@ return $search_result;
 			
                 
             <?php
+            
 			$numrows = mysqli_num_rows($search_result);
             
             if ($numrows > 0) {
@@ -212,7 +209,7 @@ return $search_result;
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Update Student</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
