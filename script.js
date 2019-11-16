@@ -1,31 +1,23 @@
-$(document).ready(function(){
-$("#submit").click(function(){
-    var fname = document.getElementById("input first Name").value;
-var lname = document.getElementById("input Last Name").value;
-var email = document.getElementById("inputEmail4").value;
-var Peremail = document.getElementById("inputPermemail").value;
-var GradTerm = document.getElementById("inputGradterm").value;
-var AdmitTerm = document.getElementById("inputadmitterm").value;
-var TermGpa = document.getElementById("inputtermGPA").value;
-var CumGpa = document.getElementById("inputcumGPA").value;
-var InProgressUnits = document.getElementById("inputprogressunits").value;
-var CumUnits = document.getElementById("inputcumunits").value;
-var AdmitTerm = document.getElementById("inputadmitterm").value;
-var Comments = document.getElementById("inputAdditional").value;
-var dataString = 'fname1='+ fname + 'lname1='+ lname + 'email1='+ email + 'Peremail1='+ Peremail + 'GradTerm1='+ GradTerm + 'AdmitTerm1='+ AdmitTerm + 'TermGpa1='+ TermGpa + 'CumGpa1='+ CumGpa + 'InProgressUnits1='+ InProgressUnits + 'CumUnits1='+ CumUnits + 'AdmitTerm1='+ AdmitTerm + 'Comments1='+ Comments;
+function formsubmit(){ 
+var FName = document.getElementById("FName").value;
+var Lname = document.getElementById("Lname").value;
+var Email = document.getElementById("inputEmail").value;
+var Permemail = document.getElementById("inputPermemail").value;
+var Gradterm = document.getElementById("inputGradterm").value;
+var Admitterm = document.getElementById("inputadmitterm").value;
+var TermGPA = document.getElementById("inputtermGPA").value;
+var cumGPA = document.getElementById("inputcumGPA").value;
+var progressunits = document.getElementById("inputprogressunits").value;
+var cumunits = document.getElementById("inputcumunits").value;
+var Additional = document.getElementById("inputAdditional").value;
     
-{
-// AJAX Code To Submit Form.
-$.ajax({
-type: "POST",
-url: "ajaxsubmit.php",
-data: dataString,
-cache: false,
-success: function(result){
-alert(result);
-}
-});
-}
-return false;
-});
-});
+// Returns successful data submission message when the entered information is stored in database.
+var dataString = 'FName1=' + FName + '&Lname1=' + Lname + '&Email1=' + Email + '&Permemail=' + Permemail+ '&Gradterm1=' + Gradterm + '&Admitterm1=' + Admitterm +'&TermGPA1=' + TermGPA ++ '&cumGPA1=' + cumGPA + '&progressunits1=' + progressunits + '&cumunits1=' + cumunits + '&Additional=' + cumunits;
+    
+};
+
+
+
+
+
+
