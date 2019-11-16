@@ -1,0 +1,76 @@
+body{
+    padding: 5px;
+    
+}
+
+#scuLogo{
+    width: 120px;
+    height: 120px;
+    margin: auto;
+}
+#scuLogo img{
+    width: 120px;
+    height: 120px;
+}
+.topNav{
+    padding: 10px;
+    background-color: aliceblue;
+     
+}
+
+.cola{
+    width: 0%;
+}
+.colb{
+    align-content: center;
+    width: 100%;
+}
+.outer{
+    display: flex;
+    background-color: maroon;
+    width: 800;
+    height: 80;
+    margin-top: 18px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+    border-style: solid;
+    border-radius: 3px;
+}
+.inner{
+    background-color: lightgray;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: auto;
+    margin-top: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30pt;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 20px;
+    width: inherit;
+
+}
+   .search-container{
+
+       width: 20%;
+       
+       
+            }
+
+
+           
+.itemnav{
+    width: 100%;
+    
+    
+    text-align: center;
+}
+
+#addbutton{
+    padding: 10%;
+    margin: auto;
+}
+
