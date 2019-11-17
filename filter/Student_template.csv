@@ -1,0 +1,17 @@
+student_id,project_id,first_name,last_name,email,perm_email,current_term,grad_term,admit_term,term_gpa,cum_gpa,in_progress_units,cum_units,status
+14111,10,Kyle,wright,kwright@scu.edu,kwright@gmail.com,1000,4000,3842,3.1,3.2,6,46,Inactive
+14112,10,Prithvi,Naidu,pnadu@scuwekf.efesf,asdasdadht@gmail.com,1000,2000,4141,4,4,12,48,active
+14113,12,Pooja,Powar,pp@addgfaeef.com,ewrwer@agrdg.com,1000,1232,4545,3,3.3,10,42,Inactive
+14114,13,Yogi,Sahu,qaefasf@gmail.com,gagaggfafe@gmail.com,1000,2343,4545,3.4,3.8,11,48,Inactive
+141512,14,Raj,Paul,rp@scu.edu,sdfadfuh@gmail.com,5351,1234,1234,3.4,3.8,11,48,Inactive
+145166,15,paula,parker,cpc@gmail.co,sdfadfuh@gmail.com,5531,1234,1234,3.4,3.8,11,48,Inactive
+145167,16,steph,wayne,prw@gmail.com,sdfadfuh@gmail.com,2000,1234,1234,3.4,3.8,11,48,Inactive
+145168,16,charlie,bane,raw@gmail.com,sdfadfuh@gmail.com,3000,1234,1234,3.4,3.8,11,48,active
+145169,17,rose,kane,mou@rediff.com,sdfadfuh@gmail.com,4000,1234,1234,3.4,3.8,11,48,active
+145170,10,April,March,am@gmail.com,am@scu.edu,3000,1314,1341,3,3,11,38,active
+145171,12,Autum,Spring,as@gmail.com,as@gmail.com,4000,1231,1241,2.9,2.8,11,42,active
+145172,0,Deepu,Yadav,dp@gmail.com,dp@scu.edu,4000,1231,1241,2.9,2.8,11,11,Inactive
+145173,0,Karan ,Nemani,karan@gmail.com,knemani@scu.edu,4000,1231,1241,2.9,2.8,11,11,Inactive
+145174,0,Gaurav,Hassija,gaurav@scu.edu,gaurav@gmail.com,4000,1231,1241,2.9,2.8,11,11,active
+145175,0,Shivam ,Kapoor,shivkapoor@scu.edu,shivkapoor@gmail.com,4000,1231,1241,2.9,2.8,11,11,active
+145176,0,Prachi ,Sharma,psharma2@scu.edu,psharma2@gmail.com,4000,1231,1241,2.9,2.8,11,11,active
