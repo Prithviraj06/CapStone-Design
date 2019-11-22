@@ -175,13 +175,21 @@ else
                 <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#exampleModalCenter1'>Add</button>
             
             <!--Export Table button-->
-            <form method="post" id="exportCSV" action="index_faculty.php" class="hidden">
-                <button type="button" class="btn btn-primary" id="ids" name="export" data-toggle="modal"  data-target="#export">Export</button>
-            </form>
+            <button method="post" type="button" class="btn btn-primary" name="export" data-toggle="modal"  data-target="#exportModal">Export</button>
+            
             <!--Export to CSV--> 
+            <!--Export to CSV Modal--> 
+            <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Export to CSV</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
             <?php
-            if(isset($_POST["export"]))
-            {
                 $download_query = "SELECT * FROM faculty ORDER BY 1";
                 $download_result = searchTable($download_query);
                 
@@ -201,29 +209,15 @@ else
                     
                     $fileName = "Capstone_Export.csv";
                     
-                    echo '<div class="modal fade" id="exportProject" tabindex="-1" role="dialog" aria-labelledby="exportModal" aria-hidden="true">';
-                      echo '<div class="modal-dialog" role="document">';
-                        echo '<div class="modal-content">';
-                          echo '<div class="modal-header">';
-                            echo '<h5 class="modal-title" id="exampleModalLabel">Export to CSV</h5>';
-                            echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-                              echo '<span aria-hidden="true">&times;</span>';
-                            echo '</button>';
-                          echo '</div>';
-                          echo '<div class="modal-body">';
-                            echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';
-                          echo '</div>';
-                          echo '<div class="modal-footer">';
-                            echo '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
-                          echo '</div>';
-                        echo '</div>';
-                      echo '</div>';
-                    echo '</div>';    
+                            echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';        
                 }    
-                            
-            }
             ?>
-            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
         </div>
     </nav> 
 </div>
@@ -356,11 +350,12 @@ if (isset($_POST["submit"]))
                       <input type="text" class="form-control" name="spec" id="spec" placeholder="Specialization">
                     </div>
                     </div>
+                <button id="submit" type="submit" class="btn btn-primary" >Add</button>
         </form>
 
           </div>
           <div class="modal-footer">
-            <button id="submit" type="submit" class="btn btn-primary" >Add</button>
+            
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
           </div>
