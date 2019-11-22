@@ -1,4 +1,4 @@
-<html>
+1<html>
     <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
@@ -150,8 +150,51 @@ else
             <!--Add student record button-->
                 <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#addModal'>Add</button>
             
-            <!--Download Table button-->
-                <!--<button type='button' class='btn btn-primary' Download </button>-->
+            <!--Export Table button-->
+                <button method="post" type="button" class="btn btn-primary" name="export" data-toggle="modal"  data-target="#exportModal">Export</button>
+           
+            <!--Export to CSV Modal--> 
+            <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Export to CSV</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+            <?php
+                $download_query = "SELECT * FROM sponsor ORDER BY 1";
+                $download_result = searchTable($download_query);
+                
+                $allData = "";
+
+                if ($download_result -> num_rows > 0)
+                {    
+                    while($row = $download_result -> fetch_assoc())
+                    {
+                        $allData .= $row['sponsor_id'].','.$row['first_name'].','.$row['last_name'].','.$row['company'].','.$row['phone'].','.$row['email'].','.$row['title'].','.$row['address']."\n";
+                    }
+
+
+                    $response = "data:text/csv;charset=utf-8,sponsor_id, first_name, last_name, company, phone, email, title, address\n";
+
+                    $response .= $allData;
+                    
+                    $fileName = "Capstone_Export.csv";
+                    
+                    echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';
+                          
+                }    
+                            
+            
+            ?>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
 
         </div>
     </nav> 

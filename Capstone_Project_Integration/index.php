@@ -114,7 +114,7 @@ if(isset($_POST['search']))
     #Filter for eligible students
     if($filter_value == "eligible")
     {
-        $filter = "(cum_units BETWEEN 27 and 50 AND project_id = 0)";
+        $filter = "(cum_units BETWEEN 27 and 50 AND s.project_id = 0)";
     }
     #Filter for not eligible students
     elseif($filter_value == "notEligible")
@@ -125,12 +125,12 @@ if(isset($_POST['search']))
     #Filter for enrolled students
     elseif($filter_value == "enrolled")
     {
-        $filter = "(cum_units >= 27 AND project_id > 0)";
+        $filter = "(cum_units >= 27 AND s.project_id > 0)";
     }
     #Filter for graduated students
     elseif($filter_value == "graduated")
     {
-        $filter = "(status = 'Inactive')";
+        $filter = "(s.status = 'Inactive')";
     }
     #Filter all records
     elseif ($filter_value == "All")
@@ -171,14 +171,14 @@ if(isset($_POST['search']))
         $where_value = "WHERE ".$filter;
     }
     
-    $search_query = "SELECT * FROM student ".$where_value." ORDER BY 1 LIMIT $startrow, 50";
+    $search_query = "SELECT * FROM student s LEFT JOIN project p ON s.project_id = p.project_id ".$where_value." ORDER BY 1 LIMIT $startrow, 50";
     $search_result = searchTable($search_query);
     
 }
 
 else
 {
-    $search_query = "SELECT * FROM student ORDER BY 1 LIMIT $startrow,50";
+    $search_query = "SELECT * FROM student s LEFT JOIN project p ON s.project_id = p.project_id ORDER BY 1 LIMIT $startrow,50";
     $search_result = searchTable($search_query);
 } 
 
@@ -233,8 +233,6 @@ else
                     echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';
                           
                 }    
-                            
-            
             ?>
                         </div>
                     <div class="modal-footer">
@@ -242,8 +240,7 @@ else
                     </div>
                     </div>
                 </div>
-            </div>
-        
+        </div>
     </nav> 
 </div>
 <br>
@@ -263,7 +260,7 @@ else
         echo "<table border='1px'>";
         echo "<thead>";
         echo "<th>Student ID</th>";
-        echo "<th>Project ID</th>";
+        echo "<th>Project Name</th>";
         echo "<th>First Name</th>";
         echo "<th>Last Name</th>";
         echo "<th>Email</th>";
@@ -282,7 +279,7 @@ else
             {
                 echo "<tr>";
                 echo "<td>{$row['student_id']}</td>";
-                echo "<td>{$row['project_id']}</td>";
+                echo "<td>{$row['name']}</td>";
                 echo "<td>{$row['first_name']}</td>";
                 echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['email']}</td>";

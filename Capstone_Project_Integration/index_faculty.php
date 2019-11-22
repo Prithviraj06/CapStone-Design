@@ -99,7 +99,7 @@ if(isset($_POST['search']))
     
     if ($search_value != NULL)
     {
-        $search = "(faculty_id LIKE '%".$search_value."%' OR last_name LIKE '%".$search_value."%')";
+        $search = "(f.faculty_id LIKE '%".$search_value."%' OR f.last_name LIKE '%".$search_value."%')";
     }
     else
     {
@@ -108,20 +108,21 @@ if(isset($_POST['search']))
     
     
     
-    #Filter for eligible students
+    #Filter for faculty leading a project
     if($filter_value == "leading")
     {
-        $filter = "(select distinct(faculty_id) from project where faculty_id = faculty.faculty_id)";
+        $filter = "(p.faculty_id > 0)";
+        #"(select distinct(faculty_id) from project where faculty_id = faculty.faculty_id)";
     }
-    #Filter for not eligible students
+    #Filter for faculty leading not a project
     elseif($filter_value == "notleading")
     {
-        $filter = "(select distinct(faculty_id) from project where faculty_id = 0)";
+        $filter = "(p.name IS NULL)";
     }
     #Filter all records
     elseif ($filter_value == "all")
     {
-        $filter = "1";   
+        $filter = "f.faculty_id != 0";   
     }
     else
     {
@@ -148,15 +149,17 @@ if(isset($_POST['search']))
     {
         $where_value = "WHERE ".$filter;
     }
-    
-    $search_query = "SELECT * FROM faculty ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
+    #Add project Name ----------------------------------------------------------
+    $search_query = "SELECT * FROM faculty f
+                    LEFT JOIN project p ON f.faculty_id = p.faculty_id
+                    ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
     $search_result = searchTable($search_query);
     
 }
 
 else
 {
-    $query = "SELECT * FROM faculty ORDER BY 1 LIMIT $startrow,20";
+    $query = "SELECT * FROM faculty f LEFT JOIN project p ON f.faculty_id = p.faculty_id WHERE f.faculty_id != 0 ORDER BY 1 LIMIT $startrow,20";
     $search_result = searchTable($query);
 } 
 
@@ -238,6 +241,7 @@ else
         echo "<table border='1px'>";
         echo "<thead>";
         echo "<th>Faculty ID</th>";
+        echo "<th>Project Name</th>";
         echo "<th>First Name</th>";
         echo "<th>Last Name</th>";
         echo "<th>Specialization</th>";
@@ -249,6 +253,7 @@ else
             {
                 echo "<tr>";
                 echo "<td>{$row['faculty_id']}</td>";
+                echo "<td>{$row['name']}</td>";
                 echo "<td>{$row['first_name']}</td>";
                 echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['specialization']}</td>";

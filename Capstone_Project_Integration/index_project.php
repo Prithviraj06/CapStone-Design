@@ -144,10 +144,9 @@ if(isset($_POST['search']))
     {
         $where_value = "WHERE ".$filter;
     }
-    
+
     $search_query = "SELECT * FROM project ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
     $search_result = searchTable($search_query);
-    
 }
 
 else
