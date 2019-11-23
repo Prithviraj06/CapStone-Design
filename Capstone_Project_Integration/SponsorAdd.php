@@ -20,7 +20,7 @@ $address = $_POST['address'];
           echo "Failed to connect to MySQL: ".mysqli_connect_errno();
     }
  
-    $sql = "INSERT INTO sponsor(sponsor_id, first_name, last_name, company, phone, email, title, address) VALUES('$sponid','$fname','$lname','$company','$phone','$email','$title','$address')"; //Insert Query
+    $sql = "INSERT INTO sponsors(sponsor_id, first_name, last_name, company, phone, email, title, address) VALUES('$sponid','$fname','$lname','$company','$phone','$email','$title','$address')"; //Insert Query
 
   
     $result = searchTable($sql);

@@ -93,16 +93,17 @@ else
 #Filter and Search 
 if(isset($_POST['search']))
 {
+    echo 'this is hers';
     $filter_value = $_POST['sponfilter'];
     $search_value = $_POST['search_value'];
     
-    if ($search_value != NULL)
+    if($search_value != NULL)
     {
         $search = "(last_name LIKE '%".$search_value."%' OR company LIKE '%".$search_value."%')";
     }
     else
     {
-        $search = "";
+        $search = "1";
     }
     
     
@@ -110,8 +111,7 @@ if(isset($_POST['search']))
     #Filter for eligible students
     if($filter_value == "all")
     {
-        $filter = "1";  
-        
+        $filter = "1";      
     }
     else
     {
@@ -129,13 +129,13 @@ if(isset($_POST['search']))
         $where_value = "WHERE ".$filter;
     }
     
-    $search_query = "SELECT * FROM sponsor ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
+    $search_query = "SELECT * FROM sponsors ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
     $search_result = searchTable($search_query);
     
 }
 else
 {
-    $query = "SELECT * FROM sponsor ORDER BY 1 LIMIT $startrow,20";
+    $query = "SELECT * FROM sponsors ORDER BY 1 LIMIT $startrow,20";
     $search_result = searchTable($query);
 }   
 ?>      
@@ -165,7 +165,7 @@ else
                           </div>
                           <div class="modal-body">
             <?php
-                $download_query = "SELECT * FROM sponsor ORDER BY 1";
+                $download_query = "SELECT * FROM sponsors ORDER BY 1";
                 $download_result = searchTable($download_query);
                 
                 $allData = "";
@@ -209,7 +209,7 @@ else
     
     #Get number of rows from query
     $numrows = mysqli_num_rows($search_result);
-    
+
     #Display Query in Table
     if ($numrows > 0) 
     {
@@ -294,7 +294,7 @@ if (isset($_POST["submit"]))
                 $item7= mysqli_real_escape_string(connectDB(), $data[6]);
                 $item8= mysqli_real_escape_string(connectDB(), $data[7]);
 
-                $sql = "INSERT INTO sponsor(sponsor_id, first_name, last_name, company, phone, email, title, address) Values ('$item1', '$item2', '$item3','$item4','$item5','$item6','$item7','$item8') 
+                $sql = "INSERT INTO sponsors(sponsor_id, first_name, last_name, company, phone, email, title, address) Values ('$item1', '$item2', '$item3','$item4','$item5','$item6','$item7','$item8') 
                 ON DUPLICATE KEY UPDATE first_name = '$item2', last_name = '$item3', company = '$item4', phone = '$item5', email = '$item6', title = '$item7', address = '$item8'"; 
 
                 searchTable($sql);     
