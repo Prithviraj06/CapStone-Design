@@ -36,9 +36,7 @@
                     <th><a href="index_faculty.php">Faculty</a></th>
                     <th><a href="index_project.php">Project</a></th>
                     <th><a href="index_sponsor.php">Sponsor</a></th>
-
                 </table>
-
             </div>
 <br>
 
@@ -141,9 +139,7 @@ if(isset($_POST['search']))
     {
         $filter = "";
     }
-    
-    
-    
+
     
     #Filter and Search Query
     if($filter_value = "All" and $search_value != NULL)
@@ -180,9 +176,7 @@ else
 {
     $search_query = "SELECT * FROM student s LEFT JOIN project p ON s.project_id = p.project_id ORDER BY 1 LIMIT $startrow,50";
     $search_result = searchTable($search_query);
-} 
-
-#$download_result = $search_result
+}
 ?>      
             
             
@@ -275,7 +269,7 @@ else
 
         if ($search_result-> num_rows > 0)
         {
-            while ($row = mysqli_fetch_array($search_result, MYSQLI_ASSOC))
+            while ($row = mysqli_fetch_array($search_result))
             {
                 echo "<tr>";
                 echo "<td>{$row['student_id']}</td>";
@@ -284,14 +278,13 @@ else
                 echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['email']}</td>";
                 echo "<td>{$row['perm_email']}</td>";
-                echo "<td>{$row['current_term']}</td>";
-                echo "<td>{$row['grad_term']}</td>";
-                echo "<td>{$row['admit_term']}</td>";
+                echo "<td>".transformTerm($row['current_term'])."</td>";
+                echo "<td>".transformTerm($row['grad_term'])."</td>";
+                echo "<td>".transformTerm($row['admit_term'])."</td>";
                 echo "<td>{$row['cum_gpa']}</td>";
                 echo "<td>{$row['cum_units']}</td>";
                 echo "<td>{$row['status']}</td>";
                 echo "</tr>";
-
             }
             echo "</table>";
         }

@@ -28,7 +28,49 @@ function searchTable($query)
 }
 
 
+function transformTerm($term)
+{   
+    $quarterArray = array(0 => 'Fall ', 2 => 'Winter ', 4 => 'Spring ', 6 => 'Summer ');
+    
+    $start_year = 1978;
+    $counter = 0;
+    
+    $termArray = array($counter => $start_year);
+
+    $year = substr($term, 0, 2);
+    $quarter = substr($term, 2,1);
+    
+    for($counter; $counter <= $year; $counter++)
+    {
+        array_push($termArray, $start_year += 1);
+        
+    }
+    echo $termArray;
+       
+ 
+    if($quarter == 0)
+    {
+        $value = $quarterArray[$quarter].$termArray[$year];
+    }
+    elseif($quarter == 2)
+    {
+        $value = $quarterArray[$quarter].$termArray[$year];
+    }
+    elseif($quarter == 4)
+    {
+        $value = $quarterArray[$quarter].$termArray[$year];
+    }
+    elseif($quarter == 6)
+    {
+        $value = $quarterArray[$quarter].$termArray[$year];
+    }
+    else
+    {
+        $value = $term;
+    }
+    
+    return $value;
+}
+
 include ('./includes/footer.html');
 ?>
-
-

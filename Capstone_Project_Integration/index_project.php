@@ -154,8 +154,6 @@ else
     $query = "SELECT * FROM project ORDER BY 1 LIMIT $startrow,20";
     $search_result = searchTable($query);
 } 
-
-    
 ?>      
             
             <!--Upload CSV-->
@@ -234,8 +232,8 @@ else
         echo "<th>Name</th>";
         echo "<th>Description</th>";
         echo "<th>Status</th>";
-        echo "<th>Start Date</th>";
-        echo "<th>End Date</th>";
+        echo "<th>Start Term</th>";
+        echo "<th>End Term</th>";
         echo "</thead>";
 
         if ($search_result-> num_rows > 0)
@@ -248,8 +246,8 @@ else
                 echo "<td>{$row['name']}</td>";
                 echo "<td>{$row['description']}</td>";
                 echo "<td>{$row['status']}</td>";
-                echo "<td>{$row['start_date']}</td>";
-                echo "<td>{$row['end_date']}</td>";
+                echo "<td>".transformTerm($row['start_date'])."</td>";
+                echo "<td>".transformTerm($row['end_date'])."</td>";
                 echo "</tr>";
             }
             echo "</table>";
