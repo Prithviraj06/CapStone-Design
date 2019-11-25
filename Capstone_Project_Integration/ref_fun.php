@@ -45,7 +45,6 @@ function transformTerm($term)
         array_push($termArray, $start_year += 1);
         
     }
-    echo $termArray;
        
  
     if($quarter == 0)
