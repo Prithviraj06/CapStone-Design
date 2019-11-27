@@ -245,6 +245,7 @@ else
         echo "<th>First Name</th>";
         echo "<th>Last Name</th>";
         echo "<th>Specialization</th>";
+        echo "<th>Edit</th>";
         echo "</thead>";
 
         if ($search_result-> num_rows > 0)
@@ -257,6 +258,7 @@ else
                 echo "<td>{$row['first_name']}</td>";
                 echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['specialization']}</td>";
+                echo"<td><button type='button' class='btn btn-success editbutton' data-toggle='modal' data-target='#editmodal'>Edit</button></td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -320,8 +322,58 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+<!--modal for update faculty !-->            
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editmodal">Update Faculty Member</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form  method="post" action="UpdateFaculty.php">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="facid">Faculty ID</label>
+                      <input type="text" class="form-control" id="facid" name="facid" placeholder="Faculty ID">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                      <label for="fname">First Name</label>
+                      <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
+                    </div>
+
+                      <div class="form-group col-md-6">
+                      <label for="lname">Last Name</label>
+                      <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                      </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="spec">Specialization</label>
+                      <input type="text" class="form-control" name="spec" id="spec" placeholder="Specialization">
+                    </div>
+                         <button id="ediddata" type="submit" name='ediddata' class="btn btn-primary" >Update</button>
+
+                    </div>
+                                         
+              
+        </form>
+
+          </div>
+          <div class="modal-footer">
             
-        
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+</div>         
+     
+ 
+    
+    
 <!-- modal for adding new student -->
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -367,13 +419,34 @@ if (isset($_POST["submit"]))
         </div>
       </div>
 </div>         
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
+      
 
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.editbutton').on('click',function(){
+            
+            $('#editmodal').modal('show');
+            $tr=$(this).closest('tr');
+            
+            var data=$tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#facid').val(data[0]);
+            $('#fname').val(data[1]);
+            $('#lname').val(data[2]);
+            $('#spec').val(data[3]);
+                     
+            
+            
+        });
+    });
+</script> 
 </body>
 
 </html>

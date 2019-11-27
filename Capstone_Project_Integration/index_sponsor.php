@@ -223,6 +223,7 @@ else
         echo "<th>Email</th>";
         echo "<th>Title</th>";
         echo "<th>Address</th>";
+        echo "<th>Edit</th>";
         echo "</thead>";
 
         if ($search_result-> num_rows > 0)
@@ -238,6 +239,7 @@ else
                 echo "<td>{$row['email']}</td>";
                 echo "<td>{$row['title']}</td>";
                 echo "<td>{$row['address']}</td>";
+                echo"<td><button type='button' class='btn btn-success editbutton' data-toggle='modal' data-target='#editmodal'>Edit</button></td>";
                 echo "</tr>";
 
             }
@@ -306,7 +308,73 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+<!-- modal for adding new student -->
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form  method="post" action="UpdateSponsor.php">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="sponid">Sponsor ID</label>
+                      <input type="text" class="form-control" id="sponid" name="sponid" placeholder="Sponsor ID">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                      <label for="fname">First Name</label>
+                      <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
+                    </div>
+
+                      <div class="form-group col-md-6">
+                      <label for="lname">Last Name</label>
+                      <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                      </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="company">Company</label>
+                      <input type="text" class="form-control" name="company" id="company" placeholder="Company">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="phone">Phone</label>
+                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="title">Title</label>
+                      <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" name="address" id="address" placeholder="Address">
+                    </div>
+                    </div>
+                
+                <button id="submit" type="submit" name="editdata" class="btn btn-primary" >Update</button>
+        </form>
+
+          </div>
+          <div class="modal-footer">
             
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+</div>
+        
         
 <!-- modal for adding new student -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -380,7 +448,37 @@ if (isset($_POST["submit"]))
   </div>
 </div>
 
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.editbutton').on('click',function(){
+            
+            $('#editmodal').modal('show');
+            $tr=$(this).closest('tr');
+            
+            var data=$tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#sponid').val(data[0]);
+            $('#fname').val(data[1]);
+            $('#lname').val(data[2]);
+            $('#company').val(data[3]);
+            $('#phone').val(data[4]);
+            $('#email').val(data[5]);
+            $('#title').val(data[6]);
+            $('#address').val(data[7]);
+            
+                     
+            
+            
+        });
+    });
+</script> 
 </body>
 
 </html>

@@ -228,12 +228,12 @@ else
         echo "<table border='1px'>";
         echo "<thead>";
         echo "<th>Project ID</th>";
-        echo "<th>Faculty ID</th>";
         echo "<th>Name</th>";
         echo "<th>Description</th>";
         echo "<th>Status</th>";
         echo "<th>Start Term</th>";
         echo "<th>End Term</th>";
+         echo "<th>Edit</th>";
         echo "</thead>";
 
         if ($search_result-> num_rows > 0)
@@ -242,12 +242,12 @@ else
             {
                 echo "<tr>";
                 echo "<td>{$row['project_id']}</td>";
-                echo "<td>{$row['faculty_id']}</td>";
                 echo "<td>{$row['name']}</td>";
                 echo "<td>{$row['description']}</td>";
                 echo "<td>{$row['status']}</td>";
                 echo "<td>".transformTerm($row['start_date'])."</td>";
                 echo "<td>".transformTerm($row['end_date'])."</td>";
+                echo"<td><button type='button' class='btn btn-success editbutton' data-toggle='modal' data-target='#editmodal'>Edit</button></td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -314,7 +314,62 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+<!-- modal for updating project -->
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editmodal">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form  method="post" action="UpdateProject.php">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="projid">Project ID</label>
+                      <input type="text" class="form-control" id="projid" name="projid" placeholder="Project ID">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="desc">Description</label>
+                      <input type="text" class="form-control" name="desc" id="desc" placeholder="Description">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="status">Status</label>
+                      <input type="text" class="form-control" name="status" id="status" placeholder="Status">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="startdate">Start Date</label>
+                      <input type="text" class="form-control" name="startdate" id="startdate" placeholder="Start Date">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="enddate">End Date</label>
+                      <input type="text" class="form-control" name="enddate" id="enddate" placeholder="End Date">
+                    </div>
+                          <button id="ediddata" type="submit" name='ediddata' class="btn btn-primary" >Update</button>
+                    </div>
+              
+        </form>
+
+          </div>
+          <div class="modal-footer">
             
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+</div>           
         
 <!-- modal for adding new project -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -376,13 +431,37 @@ if (isset($_POST["submit"]))
         </div>
       </div>
 </div>         
-      </div>
-      </div>
-    </div>
-  </div>
 </div>
+</div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.editbutton').on('click',function(){
+            
+            $('#editmodal').modal('show');
+            $tr=$(this).closest('tr');
+            
+            var data=$tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#projid').val(data[0]);
+            $('#name').val(data[1]);
+            $('#desc').val(data[2]);
+            $('#status').val(data[3]);
+            $('#startdate').val(data[4]);
+            $('#enddate').val(data[5]);
+                     
+            
+            
+        });
+    });
+</script>   
 </body>
 
 </html>

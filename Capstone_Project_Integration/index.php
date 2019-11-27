@@ -13,7 +13,10 @@
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -265,6 +268,8 @@ else
         echo "<th>Cumulative GPA</th>";
         echo "<th>Completed Units</th>";
         echo "<th>Status</th>";
+        echo "<th>Comments</th>";
+        echo "<th>Edit</th>";
         echo "</thead>";
 
         if ($search_result-> num_rows > 0)
@@ -284,6 +289,8 @@ else
                 echo "<td>{$row['cum_gpa']}</td>";
                 echo "<td>{$row['cum_units']}</td>";
                 echo "<td>{$row['status']}</td>";
+                echo "<td>{$row['comments']}</td>";
+                echo"<td><button type='button' class='btn btn-success editbutton' data-toggle='modal' data-target='#editmodal'>Edit</button></td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -362,7 +369,105 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+
+<!--Edit student modal !-->
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editmodal">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  method="post" action="update_student.php">
             
+                <div class="form-row">
+               <div class="form-group col-md-6">
+                  <label for="stdid">Student ID</label>
+                  <input type="text" class="form-control" id="stdid" name="stdid" placeholder="Student ID">
+                  </div>
+                    
+                  <div class="form-group col-md-6">
+                  <label for="fname">First Name</label>
+                  <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
+                </div>
+                    
+                  <div class="form-group col-md-6">
+                  <label for="lname">Last Name</label>
+                  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                  </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Email</label>
+                  <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputPermemail">Perm Email</label>
+                  <input type="text" class="form-control" name="inputPermemail" id="inputPermemail" placeholder="Permanent Email">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputGradterm">Current Term</label>
+                  <input type="text" class="form-control" name="current" id="current" placeholder="Current Term">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputGradterm">Grad Term</label>
+                  <input type="text" class="form-control" name="inputGradterm" id="inputGradterm" placeholder="Grad Term">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputadmitterm">Admit Term</label>
+                  <input type="text" class="form-control" name="inputadmitterm" id="inputadmitterm" placeholder="Admit Term">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputtermGPA">Term GPA</label>
+                  <input type="text" class="form-control" name="inputtermGPA" id="inputtermGPA" placeholder="Term GPA">
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="inputcumGPA">Cumulative GPA</label>
+                  <input type="text" class="form-control" name="inputcumGPA" id="inputcumGPA" placeholder="Cumulative GPA">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputprogressunits">Units in Progress</label>
+                  <input type="text" class="form-control" name="inputprogressunits" id="inputprogressunits" placeholder="Units in Progress">
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="inputcumunits">Cumulative Units</label>
+                  <input type="text" class="form-control" name="inputcumunits" id="inputcumunits" placeholder="Cumulative Units">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="status">Status</label>
+                  <input type="text" class="form-control" name="status" id="status" placeholder="Status">
+                </div>
+                    
+                <div class="form-group col-md-6">
+                  <label for="inputAdditional">Additional Comments</label>
+                  <input type="text" class="form-control" name="inputAdditional" id="inputAdditional" placeholder="Additional Comments">
+                </div>
+
+                <button id="ediddata" type="submit" name="ediddata" class="btn btn-primary" >Update</button>
+                </div>
+    </form>
+          
+          
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
         
 <!-- modal for adding new student -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -461,6 +566,43 @@ if (isset($_POST["submit"]))
   </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.editbutton').on('click',function(){
+            
+            $('#editmodal').modal('show');
+            $tr=$(this).closest('tr');
+            
+            var data=$tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#stdid').val(data[0]);
+            $('#fname').val(data[1]);
+            $('#lname').val(data[2]);
+            $('#inputEmail').val(data[3]);
+            $('#inputPermemail').val(data[4]);
+            $('#current').val(data[5]);
+            $('#inputGradterm').val(data[6]);
+            $('#inputadmitterm').val(data[7]);
+            $('#inputtermGPA').val(data[8]);
+            $('#inputcumGPA').val(data[9]);
+            $('#inputprogressunits').val(data[10]);
+            $('#inputcumunits').val(data[11]);
+            $('#status').val(data[12]);
+            $('#inputAdditional').val(data[13]);
+           
+            
+            
+            
+        });
+    });
+</script> 
     
 </body>
 
