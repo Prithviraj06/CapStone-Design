@@ -313,7 +313,9 @@ if (isset($_POST["submit"]))
     }
 }
 ?>                
-         
+
+    
+    
 <!-- modal for updating project -->
 <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -431,37 +433,13 @@ if (isset($_POST["submit"]))
         </div>
       </div>
 </div>         
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $('.editbutton').on('click',function(){
-            
-            $('#editmodal').modal('show');
-            $tr=$(this).closest('tr');
-            
-            var data=$tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-            console.log(data);
-            $('#projid').val(data[0]);
-            $('#name').val(data[1]);
-            $('#desc').val(data[2]);
-            $('#status').val(data[3]);
-            $('#startdate').val(data[4]);
-            $('#enddate').val(data[5]);
-                     
-            
-            
-        });
-    });
-</script>   
+    
 </body>
 
 </html>

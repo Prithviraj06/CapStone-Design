@@ -149,7 +149,7 @@ if(isset($_POST['search']))
     {
         $where_value = "WHERE ".$filter;
     }
-    #Add project Name ----------------------------------------------------------
+
     $search_query = "SELECT * FROM faculty f
                     LEFT JOIN project p ON f.faculty_id = p.faculty_id
                     ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
@@ -211,8 +211,8 @@ else
                     $response .= $allData;
                     
                     $fileName = "Capstone_Export.csv";
-                    
-                            echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';        
+
+                    echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';        
                 }    
             ?>
                     </div>
@@ -322,6 +322,8 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+
+    
 <!--modal for update faculty !-->            
 <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -412,41 +414,20 @@ if (isset($_POST["submit"]))
 
           </div>
           <div class="modal-footer">
-            
+
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
           </div>
         </div>
       </div>
 </div>         
-      
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $('.editbutton').on('click',function(){
-            
-            $('#editmodal').modal('show');
-            $tr=$(this).closest('tr');
-            
-            var data=$tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-            console.log(data);
-            $('#facid').val(data[0]);
-            $('#fname').val(data[1]);
-            $('#lname').val(data[2]);
-            $('#spec').val(data[3]);
-                     
-            
-            
-        });
-    });
-</script> 
+    
 </body>
 
 </html>

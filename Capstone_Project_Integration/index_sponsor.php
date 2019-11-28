@@ -1,4 +1,4 @@
-1<html>
+<html>
     <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
@@ -93,7 +93,6 @@ else
 #Filter and Search 
 if(isset($_POST['search']))
 {
-    echo 'this is hers';
     $filter_value = $_POST['sponfilter'];
     $search_value = $_POST['search_value'];
     
@@ -128,7 +127,7 @@ if(isset($_POST['search']))
     {
         $where_value = "WHERE ".$filter;
     }
-    
+
     $search_query = "SELECT * FROM sponsors ".$where_value." ORDER BY 1 LIMIT $startrow, 20";
     $search_result = searchTable($search_query);
     
@@ -308,6 +307,7 @@ if (isset($_POST["submit"]))
 }
 ?>                
          
+
 <!-- modal for adding new student -->
 <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -448,37 +448,7 @@ if (isset($_POST["submit"]))
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $('.editbutton').on('click',function(){
-            
-            $('#editmodal').modal('show');
-            $tr=$(this).closest('tr');
-            
-            var data=$tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-            console.log(data);
-            $('#sponid').val(data[0]);
-            $('#fname').val(data[1]);
-            $('#lname').val(data[2]);
-            $('#company').val(data[3]);
-            $('#phone').val(data[4]);
-            $('#email').val(data[5]);
-            $('#title').val(data[6]);
-            $('#address').val(data[7]);
-            
-                     
-            
-            
-        });
-    });
-</script> 
 </body>
 
 </html>

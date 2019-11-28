@@ -73,3 +73,4 @@ function transformTerm($term)
 
 include ('./includes/footer.html');
 ?>
+

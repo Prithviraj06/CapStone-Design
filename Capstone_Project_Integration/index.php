@@ -13,7 +13,8 @@
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -39,6 +40,9 @@
                     <th><a href="index_faculty.php">Faculty</a></th>
                     <th><a href="index_project.php">Project</a></th>
                     <th><a href="index_sponsor.php">Sponsor</a></th>
+
+                </table>
+
                 </table>
             </div>
 <br>
@@ -169,7 +173,7 @@ if(isset($_POST['search']))
     {
         $where_value = "WHERE ".$filter;
     }
-    
+
     $search_query = "SELECT * FROM student s LEFT JOIN project p ON s.project_id = p.project_id ".$where_value." ORDER BY 1 LIMIT $startrow, 50";
     $search_result = searchTable($search_query);
     
@@ -194,6 +198,7 @@ else
                 <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#addModal'>Add</button>
             
             <!--Export Table button-->
+
                 <button method="post" type="button" class="btn btn-primary" name="export" data-toggle="modal"  data-target="#exportModal">Export</button>
            
             <!--Export to CSV Modal--> 
@@ -226,7 +231,7 @@ else
                     $response .= $allData;
                     
                     $fileName = "Capstone_Export.csv";
-                    
+
                     echo '<a href="'.$response.'" download = "'.$fileName.'"><button>Download</button> </a>';
                           
                 }    
@@ -368,7 +373,6 @@ if (isset($_POST["submit"]))
     }
 }
 ?>                
-         
 
 <!--Edit student modal !-->
 <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -552,7 +556,7 @@ if (isset($_POST["submit"]))
 
           </div>
           <div class="modal-footer">
-            
+
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
           </div>
@@ -566,43 +570,6 @@ if (isset($_POST["submit"]))
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $('.editbutton').on('click',function(){
-            
-            $('#editmodal').modal('show');
-            $tr=$(this).closest('tr');
-            
-            var data=$tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-            console.log(data);
-            $('#stdid').val(data[0]);
-            $('#fname').val(data[1]);
-            $('#lname').val(data[2]);
-            $('#inputEmail').val(data[3]);
-            $('#inputPermemail').val(data[4]);
-            $('#current').val(data[5]);
-            $('#inputGradterm').val(data[6]);
-            $('#inputadmitterm').val(data[7]);
-            $('#inputtermGPA').val(data[8]);
-            $('#inputcumGPA').val(data[9]);
-            $('#inputprogressunits').val(data[10]);
-            $('#inputcumunits').val(data[11]);
-            $('#status').val(data[12]);
-            $('#inputAdditional').val(data[13]);
-           
-            
-            
-            
-        });
-    });
-</script> 
     
 </body>
 
