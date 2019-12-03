@@ -1,0 +1,16 @@
+.container{
+    max-width: 100%;
+}
+.navbar navbar-default{
+    
+    max-width: 100%;
+    text-align: center;
+    
+}
+
+
+#addbutton{
+    padding: 10%;
+    margin: auto;
+}
+
